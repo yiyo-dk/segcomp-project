@@ -64,7 +64,7 @@ async function runCli(): Promise<void> {
     .option('-f, --format <format>', 'Output format (text|sarif)', 'text')
     .option('-o, --out <file>', 'Write report output to a file')
     .option(
-      '--fail-on <severity>',
+      '-e, --fail-on <severity>',
       'Exit with code 1 when findings reach severity (LOW|MEDIUM|HIGH|CRITICAL)',
       'HIGH',
     )

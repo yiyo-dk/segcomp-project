@@ -29,7 +29,8 @@
     "@babel/types": "^8.1.2",
     "commander": "^15.1.0",
     "fast-glob": "^3.3.3",
-    "picocolors": "^1.1.1"
+    "picocolors": "^1.1.1",
+    "segcomp-project": "link:"
   },
   "devDependencies": {
     "@types/babel__traverse": "^7.28.0",

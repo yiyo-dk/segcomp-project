@@ -1,3 +1,4 @@
+import path from 'node:path';
 import type { Node } from '@babel/types';
 import type {
   Rule,
@@ -216,6 +217,14 @@ function getLocation(node: Node): { line: number; column: number } {
   };
 }
 
+/**
+ * Checks whether the file is located inside a `test` directory.
+ */
+export function isInTestDirectory(filePath: string): boolean {
+  const dirSegments = path.dirname(filePath).split(/[\\/]+/);
+  return dirSegments.some((segment) => segment.toLowerCase() === 'test');
+}
+
 export const hardcodedSecretsRule: Rule = {
   id: 'hardcoded-secrets',
   cwe: 'CWE-798',
@@ -228,6 +237,7 @@ export const hardcodedSecretsRule: Rule = {
 
   createVisitor(context: RuleContext): TraverseOptions {
     const reportedValueNodes = new WeakSet<Node>();
+    const inTestDirectory = isInTestDirectory(context.filePath);
 
     function reportSecretNode(
       valueNode: Node,
@@ -246,7 +256,7 @@ export const hardcodedSecretsRule: Rule = {
         line,
         column,
         message,
-        severity,
+        severity: inTestDirectory ? 'LOW' : severity,
       });
     }
 

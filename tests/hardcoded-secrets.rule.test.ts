@@ -7,10 +7,11 @@ import { hardcodedSecretsRule } from '../src/rules/hardcoded-secrets.rule.js';
 
 const tempDirs: string[] = [];
 
-function scanSource(code: string, ext = '.ts') {
+function scanSource(code: string, relativePath = 'sample.ts') {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sast-secrets-test-'));
   tempDirs.push(tmpDir);
-  const filePath = path.join(tmpDir, `sample${ext}`);
+  const filePath = path.join(tmpDir, relativePath);
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, code, 'utf-8');
 
   const scanner = new Scanner([hardcodedSecretsRule]);
@@ -117,5 +118,34 @@ describe('hardcodedSecretsRule', () => {
     `);
 
     expect(findings).toHaveLength(0);
+  });
+
+  it('attenuates all hardcoded secret findings to LOW when the file is inside a test directory', () => {
+    const githubToken = ['ghp', '1234567890abcdefghijklmnopqr'].join('_');
+    const awsKey = ['AKIA', 'IOSFODNN7EXAMPLE'].join('');
+    const code = `
+      const apiKey = "super-secret-api-value-123";
+      const token = "${githubToken}";
+      authenticate("${awsKey}");
+    `;
+
+    const findingsInTestRoot = scanSource(code, path.join('test', 'auth.ts'));
+    expect(findingsInTestRoot).toHaveLength(3);
+    expect(findingsInTestRoot.every((f) => f.severity === 'LOW')).toBe(true);
+
+    const findingsInNestedTest = scanSource(
+      code,
+      path.join('packages', 'api', 'test', 'unit', 'auth.spec.ts'),
+    );
+    expect(findingsInNestedTest).toHaveLength(3);
+    expect(findingsInNestedTest.every((f) => f.severity === 'LOW')).toBe(true);
+
+    const findingsInNonTestDir = scanSource(code, path.join('src', 'test.ts'));
+    expect(findingsInNonTestDir).toHaveLength(3);
+    expect(findingsInNonTestDir.map((f) => f.severity)).toEqual([
+      'HIGH',
+      'CRITICAL',
+      'HIGH',
+    ]);
   });
 });

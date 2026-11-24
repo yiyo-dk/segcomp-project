@@ -193,6 +193,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  segcomp-project: 'link:'
+
 importers:
 
   .:
@@ -215,6 +218,9 @@ importers:
       picocolors:
         specifier: ^1.1.1
         version: 1.1.1
+      segcomp-project:
+        specifier: link:.
+        version: 'link:'
     devDependencies:
       '@types/babel__traverse':
         specifier: ^7.28.0

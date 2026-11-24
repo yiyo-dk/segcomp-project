@@ -153,7 +153,12 @@ export class Scanner {
     const allFindings: Finding[] = [];
 
     for (const filePath of files) {
-      allFindings.push(...this.scanFile(filePath));
+      try {
+        allFindings.push(...this.scanFile(filePath));
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        console.warn(`Warning: skipping "${filePath}" (${message})`);
+      }
     }
 
     return allFindings;

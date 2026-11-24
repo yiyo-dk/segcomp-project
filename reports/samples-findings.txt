@@ -1,0 +1,322 @@
+
+Found 53 security findings:
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/01-sql-string-concat.js:3:10
+  Message:     Potential SQL injection in "db.query()" using dynamically constructed SQL.
+  Snippet:     return db.query("SELECT * FROM users WHERE id = " + userId);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/01-sql-string-concat.js:8:10
+  Message:     Potential SQL injection in "db.execute()" using dynamically constructed SQL.
+  Snippet:     return db.execute(sql);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/01-sql-string-concat.js:12:10
+  Message:     Potential SQL injection in "db.query()" using dynamically constructed SQL.
+  Snippet:     return db.query("SELECT * FROM products WHERE name LIKE '%" + term + "%'");
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/02-sql-template-literals.js:3:10
+  Message:     Potential SQL injection in "pool.query()" using dynamically constructed SQL.
+  Snippet:     return pool.query(`SELECT id, email FROM accounts WHERE email = '${email}'`);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/02-sql-template-literals.js:7:10
+  Message:     Potential SQL injection in "connection.exec()" using dynamically constructed SQL.
+  Snippet:     return connection.exec(`UPDATE tasks SET status = '${status}' WHERE id = ${id}`);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/02-sql-template-literals.js:11:10
+  Message:     Potential SQL injection in "sqlite.all()" using dynamically constructed SQL.
+  Snippet:     return sqlite.all(`SELECT * FROM members WHERE role = '${role}'`);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/03-sql-scope-tracking.js:10:10
+  Message:     Potential SQL injection in "db.run()" using dynamically constructed SQL.
+  Snippet:     return db.run(query);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/03-sql-scope-tracking.js:15:10
+  Message:     Potential SQL injection in "db.all()" using dynamically constructed SQL.
+  Snippet:     return db.all(base);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/04-sql-query-options-object.js:3:10
+  Message:     Potential SQL injection in "pgClient.query()" using dynamically constructed SQL.
+  Snippet:     return pgClient.query({
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/04-sql-query-options-object.js:10:10
+  Message:     Potential SQL injection in "mysqlConn.execute()" using dynamically constructed SQL.
+  Snippet:     return mysqlConn.execute({
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/06-secrets-aws-stripe-github.js:2:14
+  Message:     Hardcoded AWS Access Key ID detected.
+  Snippet:     export const awsAccessKey = "AKIAIOSFODNN7EXAMPLE";
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+ CRITICAL  hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/06-secrets-aws-stripe-github.js:3:7
+  Message:     Hardcoded Stripe Secret Key detected.
+  Snippet:     const stripeLiveKey = "sk_live_51H8xYz9AbCdEfGhIjKlMnOpQrStUvWxYz123456";
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+ CRITICAL  hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/06-secrets-aws-stripe-github.js:4:7
+  Message:     Hardcoded GitHub Token detected.
+  Snippet:     const githubClassicToken = "ghp_1234567890abcdefghijklmnopqrstuvwxyzABCD";
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+ CRITICAL  hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/06-secrets-aws-stripe-github.js:5:7
+  Message:     Hardcoded GitHub Token detected.
+  Snippet:     const githubFineToken = "github_pat_11ABCDEFG0123456789_ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/06-secrets-aws-stripe-github.js:8:29
+  Message:     Hardcoded Slack Token detected.
+  Snippet:     return client.postMessage("xoxb-123456789012-1234567890123-AbCdEfGhIjKlMnOpQrStUvWx");
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+ CRITICAL  hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/07-secrets-pem-and-db-uris.js:2:14
+  Message:     Hardcoded Private Key Block detected.
+  Snippet:     export const signingKey = `-----BEGIN RSA PRIVATE KEY-----
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+ CRITICAL  hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/07-secrets-pem-and-db-uris.js:6:14
+  Message:     Hardcoded Database Connection String with Credentials detected.
+  Snippet:     export const postgresUrl = "postgres://admin:S3cr3tP@ssw0rd!@db.internal.local:5432/prod";
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+ CRITICAL  hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/07-secrets-pem-and-db-uris.js:7:14
+  Message:     Hardcoded Database Connection String with Credentials detected.
+  Snippet:     export const mongoUri = "mongodb+srv://root:MySuperSecret99@cluster0.example.net/app";
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/08-secrets-common-vars-and-objects.js:2:7
+  Message:     Potential hardcoded secret assigned to "dbPassword".
+  Snippet:     const dbPassword = "CorrectHorseBatteryStaple!2026";
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/08-secrets-common-vars-and-objects.js:3:5
+  Message:     Potential hardcoded secret assigned to "jwtSecret".
+  Snippet:     let jwtSecret = "initial-placeholder";
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/08-secrets-common-vars-and-objects.js:4:1
+  Message:     Potential hardcoded secret assigned to "jwtSecret".
+  Snippet:     jwtSecret = `ultra-secret-signing-key-without-interpolations`;
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/08-secrets-common-vars-and-objects.js:7:3
+  Message:     Potential hardcoded secret assigned to "clientSecret".
+  Snippet:     clientSecret: "cs_99887766554433221100aabbccddeeff",
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/08-secrets-common-vars-and-objects.js:8:3
+  Message:     Potential hardcoded secret assigned to "apiKey".
+  Snippet:     apiKey: "key_live_9876543210fedcba9876543210",
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/08-secrets-common-vars-and-objects.js:9:3
+  Message:     Potential hardcoded secret assigned to "privateKey".
+  Snippet:     privateKey: "priv_0123456789abcdef0123456789abcdef",
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/10-mixed-express-legacy-controller.js:2:7
+  Message:     Potential hardcoded secret assigned to "INTERNAL_WEBHOOK_SECRET".
+  Snippet:     const INTERNAL_WEBHOOK_SECRET = "whsec_99887766554433221100ffeeddccbbaa";
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/10-mixed-express-legacy-controller.js:7:24
+  Message:     Potential SQL injection in "db.query()" using dynamically constructed SQL.
+  Snippet:     const rows = await db.query(`SELECT * FROM orders WHERE owner = '${req.query.owner}'`);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/11-ts-prisma-raw-unsafe.ts:13:10
+  Message:     Potential SQL injection via unsafe raw query method "prisma.$queryRawUnsafe()" with dynamic input.
+  Snippet:     return prisma.$queryRawUnsafe(`SELECT * FROM users WHERE org_id = '${orgId}'`);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/11-ts-prisma-raw-unsafe.ts:17:10
+  Message:     Potential SQL injection via unsafe raw query method "prisma.$executeRawUnsafe()" with dynamic input.
+  Snippet:     return prisma.$executeRawUnsafe("DELETE FROM logs WHERE age_days > " + days);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/11-ts-prisma-raw-unsafe.ts:21:55
+  Message:     Potential SQL injection inside parameterized template "prisma.$queryRaw" via dynamic raw fragment "raw()".
+  Snippet:     return prisma.$queryRaw`SELECT * FROM items WHERE ${Prisma.raw("category = '" + filter + "'")}`;
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/12-ts-knex-raw-tagged.ts:7:10
+  Message:     Potential SQL injection in "knex.raw()" using dynamically constructed SQL.
+  Snippet:     return knex.raw("SELECT * FROM branches WHERE city = '" + city + "'");
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/12-ts-knex-raw-tagged.ts:11:10
+  Message:     Potential SQL injection in raw tagged template "knex.raw" with interpolated expression.
+  Snippet:     return knex.raw`SELECT * FROM branches WHERE city = '${city}'`;
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/13-ts-class-properties-secrets.ts:3:3
+  Message:     Hardcoded Stripe Secret Key detected.
+  Snippet:     private readonly apiKey: string = "sk_test_51N9xYz0AbCdEfGhIjKlMnOpQrStUvWxYz654321";
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/13-ts-class-properties-secrets.ts:4:3
+  Message:     Potential hardcoded secret assigned to "jwtSecret".
+  Snippet:     static jwtSecret = "super-secret-class-level-jwt-signing-key";
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/14-ts-custom-db-wrapper.ts:8:10
+  Message:     Potential SQL injection in "runCustomSql()" using dynamically constructed SQL.
+  Snippet:     return runCustomSql<{ id: number; total: number }>(dynamicSql);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/15-ts-typed-config-and-jwt.ts:9:3
+  Message:     Potential hardcoded secret assigned to "googleMapsApiKey".
+  Snippet:     googleMapsApiKey: "AIzaSyDaGmWKa4JsXZ-9876543210abcdefghijk",
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/15-ts-typed-config-and-jwt.ts:10:3
+  Message:     Hardcoded API Secret Key (sk-) detected.
+  Snippet:     openAiKey: "sk-proj-1234567890abcdefghijklmnopqrstuvwxyzABCD",
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/15-ts-typed-config-and-jwt.ts:11:3
+  Message:     Hardcoded Hardcoded JWT detected.
+  Snippet:     serviceJwt:
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/17-ts-async-service-sqli.ts:15:10
+  Message:     Potential SQL injection in "driver.prepare()" using dynamically constructed SQL.
+  Snippet:     return driver.prepare(stmt).all();
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/18-ts-decorators-and-modern-syntax.ts:17:10
+  Message:     Potential SQL injection in "db.query()" using dynamically constructed SQL.
+  Snippet:     return db.query(`INSERT INTO audit (env, actor) VALUES ('${ctx.env}', '${actor}')`);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/19-ts-mixed-graphql-resolver.ts:2:7
+  Message:     Hardcoded Slack Token detected.
+  Snippet:     const SLACK_ALERT_TOKEN = "xoxp-998877665544-112233445566-AbCdEfGhIjKlMnOpQrStUvWx";
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/19-ts-mixed-graphql-resolver.ts:14:14
+  Message:     Potential SQL injection via unsafe raw query method "prisma.$queryRawUnsafe()" with dynamic input.
+  Snippet:     return ctx.prisma.$queryRawUnsafe(
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/20-ts-edge-cases-obfuscated-patterns.ts:3:3
+  Message:     Potential hardcoded secret assigned to "webhookSecret".
+  Snippet:     webhookSecret: `whsec_static_template_literal_without_interpolation_98765`,
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/20-ts-edge-cases-obfuscated-patterns.ts:5:5
+  Message:     Potential hardcoded secret assigned to "authToken".
+  Snippet:     authToken: "tok_live_00112233445566778899aabbccddeeff",
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/20-ts-edge-cases-obfuscated-patterns.ts:14:3
+  Message:     Potential SQL injection in "db.query()" using dynamically constructed SQL.
+  Snippet:     db.query(sql);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/21-fp-sql-injection.ts:5:10
+  Message:     Potential SQL injection in "i18n.translate()" using dynamically constructed SQL.
+  Snippet:     return i18n.translate(`Select a file from ${folder} to continue`);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/21-fp-sql-injection.ts:14:10
+  Message:     Potential SQL injection in "client.get()" using dynamically constructed SQL.
+  Snippet:     return client.get(`https://api.example.com/events?from=${startDate}&limit=${limit}`);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/21-fp-sql-injection.ts:19:10
+  Message:     Potential SQL injection in "searchIndex.query()" using dynamically constructed SQL.
+  Snippet:     return searchIndex.query(`articles where tag:${topic}`);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+ CRITICAL  sql-injection (CWE-89)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/21-fp-sql-injection.ts:31:10
+  Message:     Potential SQL injection via unsafe raw query method "prisma.$queryRawUnsafe()" with dynamic input.
+  Snippet:     return prisma.$queryRawUnsafe(sql);
+  Remediation: Use parameterized queries or prepared statements instead of string concatenation or template interpolation.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/22-fp-hardcoded-secrets.ts:5:3
+  Message:     Potential hardcoded secret assigned to "passwordResetText".
+  Snippet:     passwordResetText: 'We sent a recovery link to your email address.',
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/22-fp-hardcoded-secrets.ts:6:3
+  Message:     Potential hardcoded secret assigned to "apiKeyDescription".
+  Snippet:     apiKeyDescription: 'Generate a new key from your developer dashboard.',
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+HIGH hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/22-fp-hardcoded-secrets.ts:11:3
+  Message:     Potential hardcoded secret assigned to "jwtSecret".
+  Snippet:     jwtSecret: 'auth.config.jwt_secret_reference',
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+ CRITICAL  hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/22-fp-hardcoded-secrets.ts:16:14
+  Message:     Hardcoded GitHub Token detected.
+  Snippet:     export const docsExampleToken = 'ghp_000000000000000000000000000000000000';
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+ CRITICAL  hardcoded-secrets (CWE-798)
+  Location:    C:/Users/rodri/Desktop/u/proyecto segcomp/segcomp-project/tests/samples/22-fp-hardcoded-secrets.ts:19:14
+  Message:     Hardcoded Database Connection String with Credentials detected.
+  Snippet:     export const localDevDb = 'postgres://postgres:postgres@localhost:5432/dev_db';
+  Remediation: Remove hardcoded secrets from source code and load them from environment variables or a secrets manager.
+
+Summary: CRITICAL: 34, HIGH: 19, MEDIUM: 0, LOW: 0
